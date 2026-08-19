@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+
+<title>Tradie Toolkit</title>
+
+<style>
+:root {
+    --bg:#f3f4f6;
+    --card:#ffffff;
+    --text:#111827;
+    --muted:#6b7280;
+    --accent:#f59e0b;
+    --accent-dark:#d97706;
+    --border:#e5e7eb;
+    --danger:#dc2626;
+    --success:#059669;
+}
+
+* {
+    box-sizing:border-box;
+}
+
+body {
+    margin:0;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+header {
+    background:#111827;
+    color:white;
+    padding:20px 16px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+header h1 {
+    margin:0;
+    font-size:26px;
+}
+
+header p {
+    margin:5px 0 0;
+    color:#d1d5db;
+    font-size:13px;
+}
+
+main {
+    max-width:760px;
+    margin:auto;
+    padding:16px 14px 70px;
+}
+
+.section-title {
+    margin:20px 2px 9px;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+    font-weight:800;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:15px;
+    min-height:110px;
+    cursor:pointer;
+    box-shadow:0 2px 7px rgba(0,0,0,.05);
+    transition:.15s;
+}
+
+.card:active {
+    transform:scale(.98);
+}
+
+.card .icon {
+    font-size:29px;
+}
+
+.card b {
+    display:block;
+    margin-top:7px;
+}
+
+.card span:last-child {
+    display:block;
+    margin-top:3px;
+}
+
+.small {
+    color:var(--muted);
+    font-size:12px;
+}
+
+.hidden {
+    display:none !important;
+}
+
+.back {
+    background:none;
+    border:0;
+    color:var(--accent-dark);
+    font-weight:800;
+    padding:2px 0 14px;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.tool {
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.tool h2 {
+    margin:0 0 14px;
+}
+
+label {
+    display:block;
+    font-size:13px;
+    font-weight:750;
+    margin:12px 0 5px;
+}
+
+input,
+select,
+textarea {
+    width:100%;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    font-size:16px;
+    background:white;
+    color:var(--text);
+}
+
+textarea {
+    min-height:90px;
+    resize:vertical;
+}
+
+.row {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.btn {
+    border:0;
+    border-radius:10px;
+    padding:12px 15px;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.primary {
+    background:var(--accent);
+    color:#111827;
+}
+
+.secondary {
+    background:#e5e7eb;
+    color:#111827;
+}
+
+.danger {
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.success {
+    background:#d1fae5;
+    color:#065f46;
+}
+
+.calculate {
+    margin-top:16px;
+    width:100%;
+}
+
+.result {
+    margin-top:15px;
+    padding:14px;
+    background:#f9fafb;
+    border:1px solid var(--border);
+    border-radius:12px;
+}
+
+.line {
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:5px 0;
+}
+
+.result strong {
+    font-size:21px;
+}
+
+.actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:13px;
+}
+
+.quote {
+    background:white;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:10px;
+}
+
+.quote-title {
+    font-weight:800;
+    font-size:16px;
+}
+
+.empty {
+    text-align:center;
+    color:var(--muted);
+    padding:35px 10px;
+}
+
+.notice {
+    padding:11px;
+    border-radius:10px;
+    background:#fffbeb;
+    border:1px solid #fde68a;
+    color:#92400e;
+    font-size:12px;
+    margin-top:12px;
+}
+
+footer {
+    text-align:center;
+    color:var(--muted);
+    font-size:11px;
+    padding:15px;
+}
+
+@media(min-width:650px) {
+    .grid {
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔧 Tradie Toolkit</h1>
+    <p>Practical calculators and job tools for tradespeople</p>
+</header>
+
+<main>
+
+<!-- HOME -->
+
+<div id="home">
+
+    <div class="section-title">Construction</div>
+
+    <div class="grid">
+
+        <div class="card" onclick="openTool('area')">
+            <div class="icon">📐</div>
+            <b>Area Calculator</b>
+            <span class="small">Calculate square metres</span>
+        </div>
+
+        <div class="card" onclick="openTool('concrete')">
+            <div class="icon">🧱</div>
+            <b>Concrete Calculator</b>
+            <span class="small">Calculate concrete volume</span>
+        </div>
+
+        <div class="card" onclick="openTool('tiles')">
+            <div class="icon">⬜</div>
+            <b>Tile Calculator</b>
+            <span class="small">Tiles including wastage</span>
+        </div>
+
+        <div class="card" onclick="openTool('paint')">
+            <div class="icon">🎨</div>
+            <b>Paint Calculator</b>
+            <span class="small">Estimate litres required</span>
+        </div>
+
+        <div class="card" onclick="openTool('bricks')">
+            <div class="icon">🧱</div>
+            <b>Brick Calculator</b>
+            <span class="small">Estimate brick quantity</span>
+        </div>
+
+        <div class="card" onclick="openTool('plaster')">
+            <div class="icon">🏠</div>
+            <b>Plaster Calculator</b>
+            <span class="small">Calculate plaster volume</span>
+        </div>
+
+    </div>
+
+
+    <div class="section-title">Business</div>
+
+    <div class="grid">
+
+        <div class="card" onclick="openTool('markup')">
+            <div class="icon">💰</div>
+            <b>Markup & Margin</b>
+            <span class="small">Calculate selling price</span>
+        </div>
+
+        <div class="card" onclick="openTool('vat')">
+            <div class="icon">🧾</div>
+            <b>VAT Calculator</b>
+            <span class="small">Add or remove VAT</span>
+        </div>
+
+        <div class="card" onclick="openTool('labour')">
+            <div class="icon">⏱️</div>
+            <b>Labour Rate</b>
+            <span class="small">Hourly and daily rates</span>
+        </div>
+
+        <div class="card" onclick="openTool('quote')">
+            <div class="icon">📋</div>
+            <b>Quote Builder</b>
+            <span class="small">Create a professional quote</span>
+        </div>
+
+    </div>
+
+
+    <div class="section-title">Saved Work</div>
+
+    <div class="grid">
+
+        <div class="card" onclick="openTool('saved')">
+            <div class="icon">💾</div>
+            <b>Saved Quotes</b>
+            <span class="small">View quotes saved on this device</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOOL AREA -->
+
+<div id="toolArea" class="hidden"></div>
+
+<footer>
+    Tradie Toolkit • Calculations are estimates. Always verify quantities and material specifications before ordering.
+</footer>
+
+</main>
+
+
+<script>
+
+/* =========================================
+   BASIC HELPERS
+========================================= */
+
+function money(value) {
+
+    return "R " + Number(value || 0).toLocaleString("en-ZA", {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+    });
+
+}
+
+
+function numbers(ids) {
+
+    return ids.map(id => {
+
+        return Number(document.getElementById(id).value) || 0;
+
+    });
+
+}
+
+
+function showResult(html) {
+
+    const output = document.getElementById("output");
+
+    output.innerHTML = html;
+
+    output.classList.remove("hidden");
+
+}
+
+
+/* =========================================
+   OPEN TOOLS
+========================================= */
+
+function openTool(type) {
+
+    document.getElementById("home").classList.add("hidden");
+
+    const area = document.getElementById("toolArea");
+
+    area.classList.remove("hidden");
+
+    area.innerHTML = "";
+
+    const back = document.createElement("button");
+
+    back.className = "back";
+
+    back.textContent = "← Back to Toolkit";
+
+    back.onclick = function() {
+
+        area.classList.add("hidden");
+
+        document.getElementById("home").classList.remove("hidden");
+
+    };
+
+    area.appendChild(back);
+
+    const box = document.createElement("div");
+
+    box.className = "tool";
+
+    area.appendChild(box);
+
+
+    const tools = {
+
+
+        area: [
+
+            "📐 Area Calculator",
+
+            `
+            <div class="row">
+
+                <div>
+                    <label>Length (m)</label>
+                    <input id="a1" type="number" step="0.01">
+                </div>
+
+                <div>
+                    <label>Width (m)</label>
+                    <input id="a2" type="number" step="0.01">
+                </div>
+
+            </div>
+
+            <button class="btn primary calculate" onclick="calcArea()">
+                Calculate Area
+            </button>
+
+            <div id="output" class="result hidden"></div>
+            `
+        ],
+
+
+        concrete: [
+
+            "🧱 Concrete Calculator",
+
+            `
+            <div class="row">
+
+                <div>
+                    <label>Length (m)</label>
+                    <input id="a1" type="number" step="0.01">
+                </div>
+
+                <div>
+                    <label>Width (m)</label>
+                    <input id="a2" type="number" step="0.01">
+                </div>
+
+            </div>
+
+            <label>Depth (mm)</label>
+
+            <input id="a3" type="number" value="100">
+
+            <label>Wastage (%)</label>
+
+            <input id="a4" type="number" value="10">
+
+            <button class="btn primary calculate" onclick="calcConcrete()">
+                Calculate
+            </button>
+
+            <div id="output" class="result hidden"></div>
+
+            <div class="notice">
+                This calculates volume only. Actual concrete mix requirements depend on the specified mix design.
+            </div>
+            `
+        ],
+
+
+        tiles: [
+
+            "⬜ Tile Calculator",
+
+            `
+            <div class="row">
+
+                <div>
+                    <label>Floor Length (m)</label>
+                    <input id="a1" type="number" step="0.01">
+                </div>
+
+                <div>
+                    <label>Floor Width (m)</label>
+                    <input id="a2" type="number" step="0.01">
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div>
+                    <label>Tile Length (mm)</label>
+                    <input id="a3" type="number" value="600">
+                </div>
+
+                <div>
+                    <label>Tile Width (mm)</label>
+                    <input id="a4" type="number" value="600">
+                </div>
+
+            </div>
+
+            <label>Wastage (%)</label>
+
+            <input id="a5" type="number" value="10">
+
+            <button class="btn primary calculate" onclick="calcTiles()">
+                Calculate
+            </button>
+
+            <div id="output" class="result hidden"></div>
+            `
+        ],
+
+
+        paint: [
+
+            "🎨 Paint Calculator",
+
+            `
+            <label>Total Surface Area (m²)</label>
+
+            <input id="a1" type="number" step="0.1">
+
+            <div class="row">
+
+                <div>
+                    <label>Number of Coats</label>
+                    <input id="a2" type="number" value="2">
+                </div>
+
+                <div>
+                    <label>Coverage (m²/L)</label>
+                    <input id="a3" type="number" value="10">
+                </div>
+
+            </div>
+
+            <label>Wastage (%)</label>
+
+            <input id="a4" type="number" value="10">
+
+            <button class="btn primary calculate" onclick="calcPaint()">
+                Calculate
+            </button>
+
+            <div id="output" class="result hidden"></div>
+            `
+        ],
+
+
+        bricks: [
+
+            "🧱 Brick Calculator",
+
+            `
+            <div class="row">
+
+                <div>
+                    <label>Wall Length (m)</label>
+                    <input id="a1" type="number" step="0.01">
+                </div>
+
+                <div>
+                    <label>Wall Height (m)</label>
+                    <input id="a2" type="number" step="0.01">
+                </div>
+
+            </div>
+
+            <label>Bricks per m²</label>
+
+            <input id="a3" type="number" value="50">
+
+            <label>Wastage (%)</label>
+
+            <input id="a4" type="number" value="10">
+
+            <button class="btn primary calculate" onclick="calcBricks()">
+                Calculate
+            </button>
+
+            <div id="output" class="result hidden"></div>
+            `
+        ],
+
+
+        plaster: [
+
+            "🏠 Plaster Calculator",
+
+            `
+            <div class="row">
+
+                <div>
+                    <label>Wall Length (m)</label>
+                    <input id="a1" type="number" step="0.01">
+                </div>
+
+                <div>
+                    <label>Wall Height (m)</label>
+                    <input id="a2" type="number" step="0.01">
+                </div>
+
+            </div>
+
+            <label>Plaster Thickness (mm)</label>
+
+            <input id="a3" type="number" value="15">
+
+            <button class="btn primary calculate" onclick="calcPlaster()">
+                Calculate
+            </button>
+
+            <div id="output" class="result hidden"></div>
+            `
+        ],
+
+
+        markup: [
+
+            "💰 Markup & Margin Calculator",
+
+            `
+            <label>Cost Price (R)</label>
+
+            <input id="a1" type="number" step="0.01">
+
+            <label>Markup (%)</label>
+
+            <input id="a2" type="number" value="30">
+
+            <button class="btn primary calculate" onclick="calcMarkup()">
+                Calculate
+            </button>
+
+            <div id="output" class="result hidden"></div>
+            `
+        ],
+
+
+        vat: [
+
+            "🧾 VAT Calculator",
+
+            `
+            <label>Amount (R)</label>
+
+            <input id="a1" type="number" step="0.01">
+
+            <div class="row">
+
+                <div>
+                    <label>VAT Rate (%)</label>
+                    <input id="a2" type="number" value="15">
+                </div>
+
+                <div>
+                    <label>Action</label>
+
+                    <select id="a3">
+
+                        <option value="add">
+                            Add VAT
+                        </option>
+
+                        <option value="remove">
+                            Remove VAT
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button class="btn primary calculate" onclick="calcVAT()">
+                Calculate
+            </button>
+
+            <div id="output" class="result hidden"></div>
+            `
+        ],
+
+
+        labour: [
+
+            "⏱️ Labour Rate Calculator",
+
+            `
+            <label>Desired Monthly Income (R)</label>
+
+            <input id="a1" type="number">
+
+            <div class="row">
+
+                <div>
+                    <label>Working Days / Month</label>
+                    <input id="a2" type="number" value="22">
+                </div>
+
+                <div>
+                    <label>Billable Hours / Day</label>
+                    <input id="a3" type="number" value="7">
+                </div>
+
+            </div>
+
+            <label>Monthly Business Expenses (R)</label>
+
+            <input id="a4" type="number" value="0">
+
+            <button class="btn primary calculate" onclick="calcLabour()">
+                Calculate
+            </button>
+
+            <div id="output" class="result hidden"></div>
+            `
+        ],
+
+
+        quote: [
+
+            "📋 Quote Builder",
+
+            `
+            <label>Customer Name</label>
+
+            <input id="q1" placeholder="Customer name">
+
+            <label>Job Description</label>
+
+            <textarea id="q2" placeholder="Describe the work to be completed"></textarea>
+
+            <div class="row">
+
+                <div>
+                    <label>Materials (R)</label>
+                    <input id="q3" type="number" value="0">
+                </div>
+
+                <div>
+                    <label>Labour (R)</label>
+                    <input id="q4" type="number" value="0">
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div>
+                    <label>Transport (R)</label>
+                    <input id="q5" type="number" value="0">
+                </div>
+
+                <div>
+                    <label>Other Costs (R)</label>
+                    <input id="q6" type="number" value="0">
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div>
+                    <label>Markup (%)</label>
+                    <input id="q7" type="number" value="0">
+                </div>
+
+                <div>
+                    <label>VAT (%)</label>
+                    <input id="q8" type="number" value="15">
+                </div>
+
+            </div>
+
+            <button class="btn primary calculate" onclick="buildQuote()">
+                Calculate Quote
+            </button>
+
+            <div id="output" class="result hidden"></div>
+            `
+        ],
+
+
+        saved: [
+
+            "💾 Saved Quotes",
+
+            `
+            <div id="savedList"></div>
+            `
+        ]
+
+    };
+
+
+    const tool = tools[type];
+
+    box.innerHTML =
+        "<h2>" + tool[0] + "</h2>" +
+        tool[1];
+
+
+    if(type === "saved") {
+
+        renderSavedQuotes();
+
+    }
+
+}
+
+
+/* =========================================
+   CALCULATORS
+========================================= */
+
+function calcArea() {
+
+    const [length,width] = numbers(["a1","a2"]);
+
+    const area = length * width;
+
+    showResult(`
+        <div class="line">
+            <span>Area</span>
+            <strong>${area.toFixed(2)} m²</strong>
+        </div>
+    `);
+
+}
+
+
+function calcConcrete() {
+
+    const [length,width,depth,waste] =
+        numbers(["a1","a2","a3","a4"]);
+
+    const volume =
+        length * width * (depth / 1000);
+
+    const total =
+        volume * (1 + waste / 100);
+
+    showResult(`
+        <div class="line">
+            <span>Base volume</span>
+            <b>${volume.toFixed(3)} m³</b>
+        </div>
+
+        <div class="line">
+            <span>With ${waste}% waste</span>
+            <strong>${total.toFixed(3)} m³</strong>
+        </div>
+    `);
+
+}
+
+
+function calcTiles() {
+
+    const [length,width,tileLength,tileWidth,waste] =
+        numbers(["a1","a2","a3","a4","a5"]);
+
+    const floorArea =
+        length * width;
+
+    const tileArea =
+        (tileLength * tileWidth) / 1000000;
+
+    const tiles =
+        Math.ceil(
+            floorArea /
+            tileArea *
+            (1 + waste / 100)
+        );
+
+    showResult(`
+        <div class="line">
+            <span>Floor area</span>
+            <b>${floorArea.toFixed(2)} m²</b>
+        </div>
+
+        <div class="line">
+            <span>Tiles required</span>
+            <strong>${tiles}</strong>
+        </div>
+    `);
+
+}
+
+
+function calcPaint() {
+
+    const [area,coats,coverage,waste] =
+        numbers(["a1","a2","a3","a4"]);
+
+    const litres =
+        area *
+        coats /
+        coverage *
+        (1 + waste / 100);
+
+    showResult(`
+        <div class="line">
+            <span>Estimated paint</span>
+            <strong>${litres.toFixed(1)} L</strong>
+        </div>
+
+        <p class="small">
+            Round up to the nearest available container size.
+        </p>
+    `);
+
+}
+
+
+function calcBricks() {
+
+    const [length,height,bricksPerM2,waste] =
+        numbers(["a1","a2","a3","a4"]);
+
+    const area =
+        length * height;
+
+    const bricks =
+        Math.ceil(
+            area *
+            bricksPerM2 *
+            (1 + waste / 100)
+        );
+
+    showResult(`
+        <div class="line">
+            <span>Wall area</span>
+            <b>${area.toFixed(2)} m²</b>
+        </div>
+
+        <div class="line">
+            <span>Estimated bricks</span>
+            <strong>${bricks.toLocaleString()}</strong>
+        </div>
+    `);
+
+}
+
+
+function calcPlaster() {
+
+    const [length,height,thickness] =
+        numbers(["a1","a2","a3"]);
+
+    const area =
+        length * height;
+
+    const volume =
+        area * thickness / 1000;
+
+    showResult(`
+        <div class="line">
+            <span>Wall area</span>
+            <b>${area.toFixed(2)} m²</b>
+        </div>
+
+        <div class="line">
+            <span>Plaster volume</span>
+            <strong>${volume.toFixed(3)} m³</strong>
+        </div>
+    `);
+
+}
+
+
+function calcMarkup() {
+
+    const [cost,markup] =
+        numbers(["a1","a2"]);
+
+    const profit =
+        cost * markup / 100;
+
+    const sellingPrice =
+        cost + profit;
+
+    const margin =
+        sellingPrice ?
+        profit / sellingPrice * 100 :
+        0;
+
+    showResult(`
+        <div class="line">
+            <span>Cost</span>
+            <b>${money(cost)}</b>
+        </div>
+
+        <div class="line">
+            <span>Profit</span>
+            <b>${money(profit)}</b>
+        </div>
+
+        <div class="line">
+            <span>Selling price</span>
+            <strong>${money(sellingPrice)}</strong>
+        </div>
+
+        <div class="line">
+            <span>Profit margin</span>
+            <b>${margin.toFixed(2)}%</b>
+        </div>
+    `);
+
+}
+
+
+function calcVAT() {
+
+    const [amount,rate] =
+        numbers(["a1","a2"]);
+
+    const action =
+        document.getElementById("a3").value;
+
+    let exclusive;
+    let vat;
+    let total;
+
+    if(action === "add") {
+
+        exclusive = amount;
+
+        vat =
+            amount *
+            rate /
+            100;
+
+        total =
+            amount +
+            vat;
+
+    } else {
+
+        total = amount;
+
+        exclusive =
+            amount /
+            (1 + rate / 100);
+
+        vat =
+            total -
+            exclusive;
+
+    }
+
+    showResult(`
+        <div class="line">
+            <span>Excluding VAT</span>
+            <b>${money(exclusive)}</b>
+        </div>
+
+        <div class="line">
+            <span>VAT</span>
+            <b>${money(vat)}</b>
+        </div>
+
+        <div class="line">
+            <span>Total</span>
+            <strong>${money(total)}</strong>
+        </div>
+    `);
+
+}
+
+
+function calcLabour() {
+
+    const [income,days,hours,expenses] =
+        numbers(["a1","a2","a3","a4"]);
+
+    const requiredRevenue =
+        income + expenses;
+
+    const daily =
+        days ?
+        requiredRevenue / days :
+        0;
+
+    const hourly =
+        hours ?
+        daily / hours :
+        0;
+
+    showResult(`
+        <div class="line">
+            <span>Required monthly revenue</span>
+            <b>${money(requiredRevenue)}</b>
+        </div>
+
+        <div class="line">
+            <span>Minimum daily rate</span>
+            <b>${money(daily)}</b>
+        </div>
+
+        <div class="line">
+            <span>Minimum hourly rate</span>
+            <strong>${money(hourly)}</strong>
+        </div>
+    `);
+
+}
+
+
+/* =========================================
+   QUOTES
+========================================= */
+
+let currentQuote = null;
+
+
+function buildQuote() {
+
+    const customer =
+        document.getElementById("q1").value.trim()
+        || "Customer";
+
+    const description =
+        document.getElementById("q2").value.trim()
+        || "Trade work";
+
+    const [
+        materials,
+        labour,
+        transport,
+        other,
+        markupRate,
+        vatRate
+    ] = numbers([
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8"
+    ]);
+
+
+    const baseCost =
+        materials +
+        labour +
+        transport +
+        other;
+
+    const markup =
+        baseCost *
+        markupRate /
+        100;
+
+    const subtotal =
+        baseCost +
+        markup;
+
+    const vat =
+        subtotal *
+        vatRate /
+        100;
+
+    const total =
+        subtotal +
+        vat;
+
+
+    currentQuote = {
+
+        id:Date.now(),
+
+        customer,
+        description,
+
+        materials,
+        labour,
+        transport,
+        other,
+
+        markup,
+        markupRate,
+
+        subtotal,
+
+        vat,
+        vatRate,
+
+        total,
+
+        created:new Date().toLocaleString("en-ZA")
+
+    };
+
+
+    showResult(`
+
+        <div class="line">
+            <span>Base cost</span>
+            <b>${money(baseCost)}</b>
+        </div>
+
+        <div class="line">
+            <span>Markup</span>
+            <b>${money(markup)}</b>
+        </div>
+
+        <div class="line">
+            <span>Subtotal</span>
+            <b>${money(subtotal)}</b>
+        </div>
+
+        <div class="line">
+            <span>VAT</span>
+            <b>${money(vat)}</b>
+        </div>
+
+        <div class="line">
+            <span>Total</span>
+            <strong>${money(total)}</strong>
+        </div>
+
+        <div class="actions">
+
+            <button class="btn primary"
+                    onclick="saveQuote()">
+                💾 Save Quote
+            </button>
+
+            <button class="btn secondary"
+                    onclick="shareQuote()">
+                📲 Share
+            </button>
+
+            <button class="btn secondary"
+                    onclick="printQuote()">
+                🖨️ Print / PDF
+            </button>
+
+        </div>
+    `);
+
+}
+
+
+function getSavedQuotes() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem("tradieToolkitQuotes")
+            || "[]"
+        );
+
+    } catch(e) {
+
+        return [];
+
+    }
+
+}
+
+
+function saveQuote() {
+
+    if(!currentQuote) return;
+
+    const quotes =
+        getSavedQuotes();
+
+    quotes.unshift(currentQuote);
+
+    localStorage.setItem(
+        "tradieToolkitQuotes",
+        JSON.stringify(quotes)
+    );
+
+    alert("Quote saved on this device.");
+
+}
+
+
+function shareQuote() {
+
+    if(!currentQuote) return;
+
+    const q = currentQuote;
+
+    const text =
+`TRADE QUOTE
+
+Customer: ${q.customer}
+
+Job:
+${q.description}
+
+Materials: ${money(q.materials)}
+Labour: ${money(q.labour)}
+Transport: ${money(q.transport)}
+Other: ${money(q.other)}
+
+Subtotal: ${money(q.subtotal)}
+VAT: ${money(q.vat)}
+
+TOTAL: ${money(q.total)}`;
+
+
+    if(navigator.share) {
+
+        navigator.share({
+
+            title:"Trade Quote",
+
+            text:text
+
+        }).catch(()=>{});
+
+    } else {
+
+        navigator.clipboard
+        .writeText(text)
+        .then(()=>alert("Quote copied to clipboard."));
+
+    }
+
+}
+
+
+function printQuote() {
+
+    if(!currentQuote) return;
+
+    const q =
+        currentQuote;
+
+    const win =
+        window.open(
+            "",
+            "_blank"
+        );
+
+    if(!win) {
+
+        alert(
+            "Please allow pop-ups to print the quote."
+        );
+
+        return;
+
+    }
+
+
+    win.document.write(`
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Trade Quote</title>
+
+<style>
+
+body {
+    font-family:Arial,sans-serif;
+    max-width:800px;
+    margin:auto;
+    padding:40px;
+    color:#111827;
+}
+
+h1 {
+    margin-bottom:5px;
+}
+
+hr {
+    border:0;
+    border-top:1px solid #ddd;
+    margin:20px 0;
+}
+
+.row {
+    display:flex;
+    justify-content:space-between;
+    padding:7px 0;
+}
+
+.total {
+    font-size:24px;
+    font-weight:bold;
+    border-top:2px solid #111827;
+    margin-top:10px;
+    padding-top:12px;
+}
+
+.small {
+    color:#666;
+    font-size:12px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>TRADE QUOTE</h1>
+
+<p class="small">
+Generated by Tradie Toolkit
+</p>
+
+<hr>
+
+<p>
+<strong>Customer:</strong>
+${escapeHTML(q.customer)}
+</p>
+
+<p>
+<strong>Job:</strong><br>
+${escapeHTML(q.description)}
+</p>
+
+<hr>
+
+<div class="row">
+<span>Materials</span>
+<span>${money(q.materials)}</span>
+</div>
+
+<div class="row">
+<span>Labour</span>
+<span>${money(q.labour)}</span>
+</div>
+
+<div class="row">
+<span>Transport</span>
+<span>${money(q.transport)}</span>
+</div>
+
+<div class="row">
+<span>Other costs</span>
+<span>${money(q.other)}</span>
+</div>
+
+<div class="row">
+<span>Markup</span>
+<span>${money(q.markup)}</span>
+</div>
+
+<hr>
+
+<div class="row">
+<strong>Subtotal</strong>
+<strong>${money(q.subtotal)}</strong>
+</div>
+
+<div class="row">
+<span>VAT</span>
+<span>${money(q.vat)}</span>
+</div>
+
+<div class="row total">
+<span>TOTAL</span>
+<span>${money(q.total)}</span>
+</div>
+
+<hr>
+
+<p class="small">
+Quote generated:
+${q.created}
+</p>
+
+</body>
+
+</html>
+`);
+
+    win.document.close();
+
+    win.focus();
+
+    setTimeout(
+        () => win.print(),
+        300
+    );
+
+}
+
+
+function renderSavedQuotes() {
+
+    const list =
+        document.getElementById("savedList");
+
+    const quotes =
+        getSavedQuotes();
+
+
+    if(!quotes.length) {
+
+        list.innerHTML = `
+            <div class="empty">
+                No saved quotes yet.<br><br>
+                Create a quote and tap
+                <strong>Save Quote</strong>.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        quotes.map(q => `
+
+            <div class="quote">
+
+                <div class="quote-title">
+                    ${escapeHTML(q.customer)}
+                </div>
+
+                <div class="small">
+                    ${escapeHTML(q.created)}
+                </div>
+
+                <p>
+                    ${escapeHTML(q.description)}
+                </p>
+
+                <strong>
+                    ${money(q.total)}
+                </strong>
+
+                <div class="actions">
+
+                    <button
+                        class="btn secondary"
+                        onclick="loadQuote(${q.id})">
+
+                        Open
+
+                    </button>
+
+                    <button
+                        class="btn danger"
+                        onclick="deleteQuote(${q.id})">
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+function loadQuote(id) {
+
+    const quote =
+        getSavedQuotes()
+        .find(q => q.id === id);
+
+    if(!quote) return;
+
+    openTool("quote");
+
+
+    document.getElementById("q1").value =
+        quote.customer;
+
+    document.getElementById("q2").value =
+        quote.description;
+
+    document.getElementById("q3").value =
+        quote.materials;
+
+    document.getElementById("q4").value =
+        quote.labour;
+
+    document.getElementById("q5").value =
+        quote.transport;
+
+    document.getElementById("q6").value =
+        quote.other;
+
+    document.getElementById("q7").value =
+        quote.markupRate;
+
+    document.getElementById("q8").value =
+        quote.vatRate;
+
+
+    buildQuote();
+
+}
+
+
+function deleteQuote(id) {
+
+    if(!confirm("Delete this quote?")) {
+
+        return;
+
+    }
+
+
+    const quotes =
+        getSavedQuotes()
+        .filter(q => q.id !== id);
+
+
+    localStorage.setItem(
+        "tradieToolkitQuotes",
+        JSON.stringify(quotes)
+    );
+
+
+    renderSavedQuotes();
+
+}
+
+
+/* =========================================
+   SECURITY / TEXT ESCAPING
+========================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+</html>
